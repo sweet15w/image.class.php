@@ -17,7 +17,7 @@ class Image {
         $this->filename = $filename;
 
         try {
-            if(!file_exists($this->filename)) {
+            if (!file_exists($this->filename)) {
                 throw new Exception("Filename is not exists");
             }
 
@@ -59,7 +59,7 @@ class Image {
         $this->watermark = isset($params["watermark"]) ? $params["watermark"] : null;
         $this->prefix = isset($params["prefix"]) ? $params["prefix"] : null;
 
-        if(!is_dir($this->path)) {
+        if (!is_dir($this->path)) {
             throw new Exception("Directory not found: ".$this->path);
         }
 
@@ -111,7 +111,7 @@ class Image {
     function saveProportion() {
         list($width, $height) = getimagesize($this->filename);
 
-        if($width >= $height) {
+        if ($width >= $height) {
             $this->height = $height / $width * $this->width;
         } else {
             $this->width = $width / $height * $this->height;
@@ -132,12 +132,6 @@ class Image {
 
     function saveFixed() {
         list($width, $height) = getimagesize($this->filename);
-
-        if($width >= $height) {
-            //$this->height = $height / $width * $this->width;
-        } else {
-            //$this->width = $width / $height * $this->height;
-        }
 
         $image=imagecreatetruecolor($this->width, $this->height);
         $transparent = imagecolorallocatealpha($image, 0, 0, 0, 127);
@@ -187,7 +181,7 @@ class Image {
     function saveSquare() {
         list($width,$height) = getimagesize($this->filename);
 
-        if($width >= $height) {
+        if ($width >= $height) {
             $this->width = $this->height;
             $__width2 = $height;
             $__height2 = $height;
